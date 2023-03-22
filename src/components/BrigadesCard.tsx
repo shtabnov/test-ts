@@ -1,5 +1,6 @@
 import { IBrigades, IConnectionState, IDepartment } from "../data/models";
 import { Card } from "antd";
+import { CheckCircleOutlined, StopOutlined } from "@ant-design/icons";
 
 interface BrigadeProp {
     brigade: IBrigades;
@@ -9,12 +10,41 @@ interface BrigadeProp {
 
 const BrigadesCard = ({ brigade, department, connection }: BrigadeProp) => {
     return (
-        <Card size="small" title={brigade.brigade_name} style={{ width: 300 }}>
-            <p className="font-bold">{department.name}</p>
-            <p>Соединение: {connection.name}</p>
-            <p>Кластер: {brigade.position.cluster}</p>
-            <p>Поле: {brigade.position.field}</p>
-            <p>Скважина: {brigade.position.well}</p>
+        <Card
+            size="small"
+            title={brigade.brigade_name}
+            className="w-60 shadow-xl"
+        >
+            <h3 className="text-lg leading-10">{department.name}</h3>
+            <p>
+                <b>Соединение: </b>
+                <span
+                    className={`${
+                        connection.connectionStateId
+                            ? "text-green-500"
+                            : "text-red-500"
+                    }
+                    `}
+                >
+                    {connection.name}
+                </span>
+                <span className="text-blue-500 ml-2">
+                    {connection.connectionStateId ? (
+                        <CheckCircleOutlined />
+                    ) : (
+                        <StopOutlined />
+                    )}
+                </span>
+            </p>
+            <p>
+                <b>Кластер: </b> {brigade.position.cluster}
+            </p>
+            <p>
+                <b>Поле: </b> {brigade.position.field}
+            </p>
+            <p>
+                <b>Скважина: </b> {brigade.position.well}
+            </p>
         </Card>
     );
 };
