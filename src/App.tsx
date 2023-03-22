@@ -9,7 +9,7 @@ import Error from './components/Error';
 function App() {
   const { brigades, departments, connection, isLoading, error } = useData();
 
-  const [selectedDepartmen, setSelectedDepartment] = useState<
+  const [selectedDepartment, setSelectedDepartment] = useState<
     number | undefined
   >(undefined);
   const [selectedConnectionState, setSelectedConnectionState] = useState<
@@ -23,7 +23,7 @@ function App() {
         break;
       }
       if (data === undefined) {
-        setSelectedDepartment(undefined);
+        setSelectedDepartment(data);
       }
     }
   }
@@ -35,7 +35,7 @@ function App() {
         break;
       }
       if (data === undefined) {
-        setSelectedConnectionState(undefined);
+        setSelectedConnectionState(data);
       }
     }
   }
@@ -69,7 +69,7 @@ function App() {
         brigades={brigades}
         departments={departments}
         connectionState={connection}
-        selectedDepartmen={selectedDepartmen}
+        selectedDepartment={selectedDepartment}
         selectedConnectionState={selectedConnectionState}
       />
     </div>
