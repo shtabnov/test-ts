@@ -1,53 +1,79 @@
-import useData from "./hooks/data";
-import { useState } from "react";
+import useData from './hooks/data';
+import { useState } from 'react';
 
-import BrigadesList from "./components/BrigadesList";
-import Filters from "./components/Filters";
-import IsLoading from "./components/IsLoading";
-import Error from "./components/Error";
-import { IFilterData } from "./data/models";
+import BrigadesList from './components/BrigadesList';
+import Filters from './components/Filters';
+import IsLoading from './components/IsLoading';
+import Error from './components/Error';
 
 function App() {
-    const { brigades, departments, connection, isLoading, error } = useData();
-    const [filterData, setFilterData] = useState<IFilterData>({});
+  const { brigades, departments, connection, isLoading, error } = useData();
 
-    function handleFilterData(data: IFilterData): void {
-        // console.log(data);
-        setFilterData(data);
+  const [selectedDepartmen, setSelectedDepartment] = useState<
+    number | undefined
+  >(undefined);
+  const [selectedConnectionState, setSelectedConnectionState] = useState<
+    boolean | undefined
+  >(undefined);
+
+  function handleDepartmentSelect(data: string | undefined): void {
+    for (let department of departments) {
+      if (department.name === data) {
+        setSelectedDepartment(department.id);
+        break;
+      }
+      if (data === undefined) {
+        setSelectedDepartment(undefined);
+      }
     }
+  }
 
-    if (isLoading) {
-        return (
-            <div className="container w-screen h-screen mx-auto flex justify-center items-center">
-                <IsLoading />
-            </div>
-        );
+  function handleConnectionSelect(data: string | undefined): void {
+    for (let connect of connection) {
+      if (connect.name === data) {
+        setSelectedConnectionState(connect.connectionStateId);
+        break;
+      }
+      if (data === undefined) {
+        setSelectedConnectionState(undefined);
+      }
     }
+  }
 
-    if (error) {
-        return (
-            <div className="container w-screen h-screen mx-auto flex justify-center items-center">
-                <Error error={error} />
-            </div>
-        );
-    }
-
+  if (isLoading) {
     return (
-        <div className="container mx-auto max-w-5xl pb-5">
-            <Filters
-                departments={departments}
-                connectionState={connection}
-                handleFilterData={handleFilterData}
-            />
-
-            <BrigadesList
-                brigades={brigades}
-                departments={departments}
-                connectionState={connection}
-                filterData={filterData}
-            />
-        </div>
+      <div className="container w-screen h-screen mx-auto flex justify-center items-center">
+        <IsLoading />
+      </div>
     );
+  }
+
+  if (error) {
+    return (
+      <div className="container w-screen h-screen mx-auto flex justify-center items-center">
+        <Error error={error} />
+      </div>
+    );
+  }
+
+  return (
+    <div className="container mx-auto max-w-5xl pb-5">
+      <Filters
+        departments={departments}
+        connectionState={connection}
+        handleDepartmentSelect={handleDepartmentSelect}
+        handleconnectionSelect={handleConnectionSelect}
+      />
+
+      <BrigadesList
+        brigades={brigades}
+        departments={departments}
+        connectionState={connection}
+        selectedDepartmen={selectedDepartmen}
+        selectedConnectionState={selectedConnectionState}
+      />
+    </div>
+  );
 }
 
 export default App;

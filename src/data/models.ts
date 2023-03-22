@@ -1,28 +1,23 @@
 export interface IBrigades {
+  id: number;
+  brigade_name: string;
+  connectionStateId: boolean;
+  department: {
     id: number;
-    brigade_name: string;
-    connectionStateId: boolean;
-    department: {
-        id: number;
-    };
-    position: {
-        field: string;
-        cluster: number;
-        well: number;
-    };
+  };
+  position: {
+    field: string;
+    cluster: number;
+    well: number;
+  };
 }
 
 export interface IDepartment {
-    id: number;
-    name: string;
+  id: number;
+  name: string;
 }
 
 export interface IConnectionState {
-    connectionStateId: boolean;
-    name: string;
-}
-
-export interface IFilterData {
-    connectionStateId?: boolean;
-    departmentId?: number;
+  connectionStateId: boolean;
+  name: string;
 }
