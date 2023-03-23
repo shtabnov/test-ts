@@ -1,5 +1,5 @@
-import BrigadesCard from "./BrigadesCard";
-import { IBrigades, IConnectionState, IDepartment } from "../data/models";
+import BrigadesCard from './BrigadesCard';
+import { IBrigades, IConnectionState, IDepartment } from '../data/models';
 
 interface BigadesProps {
     brigades: IBrigades[];

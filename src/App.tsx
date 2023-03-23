@@ -1,10 +1,10 @@
-import useData from "./hooks/data";
-import { useState } from "react";
+import useData from './hooks/data';
+import { useState } from 'react';
 
-import BrigadesList from "./components/BrigadesList";
-import Filters from "./components/Filters";
-import IsLoading from "./components/IsLoading";
-import Error from "./components/Error";
+import BrigadesList from './components/BrigadesList';
+import Filters from './components/Filters';
+import IsLoading from './components/IsLoading';
+import Error from './components/Error';
 
 function App() {
     const { brigades, departments, connection, isLoading, error } = useData();
@@ -57,7 +57,7 @@ function App() {
     }
 
     return (
-        <div className="w-screen pb-5">
+        <div className="w-screen">
             <Filters
                 departments={departments}
                 connectionState={connection}

@@ -1,5 +1,5 @@
-import { Select } from "antd";
-import { IConnectionState, IDepartment } from "../data/models";
+import { Select } from 'antd';
+import { IConnectionState, IDepartment } from '../data/models';
 
 interface FiltersProp {
     departments: IDepartment[];
