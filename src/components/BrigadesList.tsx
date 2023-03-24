@@ -35,7 +35,7 @@ const BrigadesList = ({
         });
     handleCountBrigade(filtredBrigades.length);
     return (
-        <div className="container flex flex-wrap gap-3 justify-between mx-auto my-4">
+        <div className="container flex flex-wrap gap-3 justify-evenly mx-auto my-4 max-sm:mx-2">
             {filtredBrigades.map((brigade: IBrigades) => {
                 return (
                     <BrigadesCard

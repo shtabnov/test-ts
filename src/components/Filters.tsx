@@ -18,8 +18,8 @@ const Filters = ({
 }: FiltersProp) => {
     return (
         <div className="filters p-5 sticky top-0 z-10 bg-slate-200 ">
-            <div className="container mx-auto flex justify-between align-middle">
-                <div className="selectContainer flex">
+            <div className="container mx-auto flex flex-col sm:flex-row justify-between align-middle ">
+                <div className="selectContainer flex flex-col sm:flex-row">
                     <div className="select-box w-52">
                         <span>Соединение:</span>
                         <Select
@@ -61,7 +61,7 @@ const Filters = ({
                         />
                     </div>
                 </div>
-                <div className="flex items-center mr-1">
+                <div className="flex items-center mr-1 max-sm:mt-2">
                     <p>
                         Всего <b>{countBrigade}</b> бригад
                     </p>
