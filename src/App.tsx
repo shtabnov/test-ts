@@ -15,6 +15,7 @@ function App() {
     const [selectedConnectionState, setSelectedConnectionState] = useState<
         boolean | undefined
     >(undefined);
+    const [countBrigade, setCountBrigade] = useState<number>(0);
 
     function handleDepartmentSelect(data: string | undefined): void {
         for (let department of departments) {
@@ -40,6 +41,10 @@ function App() {
         }
     }
 
+    function handleCountBrigade(number: number): void {
+        setCountBrigade(number);
+    }
+
     if (isLoading) {
         return (
             <div className="container w-screen h-screen mx-auto flex justify-center items-center">
@@ -63,6 +68,7 @@ function App() {
                 connectionState={connection}
                 handleDepartmentSelect={handleDepartmentSelect}
                 handleconnectionSelect={handleConnectionSelect}
+                countBrigade={countBrigade}
             />
 
             <BrigadesList
@@ -71,6 +77,7 @@ function App() {
                 connectionState={connection}
                 selectedDepartment={selectedDepartment}
                 selectedConnectionState={selectedConnectionState}
+                handleCountBrigade={handleCountBrigade}
             />
         </div>
     );

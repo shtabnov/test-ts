@@ -7,6 +7,7 @@ interface BigadesProps {
     connectionState: IConnectionState[];
     selectedDepartment: number | undefined;
     selectedConnectionState: boolean | undefined;
+    handleCountBrigade: any;
 }
 
 const BrigadesList = ({
@@ -15,56 +16,49 @@ const BrigadesList = ({
     connectionState,
     selectedDepartment,
     selectedConnectionState,
+    handleCountBrigade,
 }: BigadesProps) => {
+    const filtredBrigades = brigades
+        .filter((brigade) => {
+            if (selectedDepartment === undefined) {
+                return brigade;
+            } else {
+                return brigade.department.id === selectedDepartment;
+            }
+        })
+        .filter((brigade) => {
+            if (selectedConnectionState === undefined) {
+                return brigade;
+            } else {
+                return brigade.connectionStateId === selectedConnectionState;
+            }
+        });
+    handleCountBrigade(filtredBrigades.length);
     return (
         <div className="container flex flex-wrap gap-3 justify-between mx-auto my-4">
-            {brigades
-                .filter((brigade) => {
-                    if (selectedDepartment === undefined) {
-                        return brigade;
-                    } else {
-                        return brigade.department.id === selectedDepartment;
-                    }
-                })
-                .filter((brigade) => {
-                    if (selectedConnectionState === undefined) {
-                        return brigade;
-                    } else {
-                        return (
-                            brigade.connectionStateId ===
-                            selectedConnectionState
-                        );
-                    }
-                })
-                .map((brigade: IBrigades) => {
-                    return (
-                        <BrigadesCard
-                            key={brigade.id}
-                            brigade={brigade}
-                            // подумать как передать не массив а один объект!!! как департаменте так и в статусе соединения
-                            department={
-                                departments.filter(
-                                    (department: IDepartment) => {
-                                        return (
-                                            department.id ===
-                                            brigade.department.id
-                                        );
-                                    }
-                                )[0]
-                            }
-                            connection={
-                                connectionState.filter(
-                                    (cconnection: IConnectionState) => {
-                                        return (
-                                            cconnection.connectionStateId ===
-                                            brigade.connectionStateId
-                                        );
-                                    }
-                                )[0]
-                            }
-                        />
-                    );
-                })}
+            {filtredBrigades.map((brigade: IBrigades) => {
+                return (
+                    <BrigadesCard
+                        key={brigade.id}
+                        brigade={brigade}
+                        department={
+                            departments.filter((department: IDepartment) => {
+                                return department.id === brigade.department.id;
+                            })[0]
+                        }
+                        connection={
+                            connectionState.filter(
+                                (cconnection: IConnectionState) => {
+                                    return (
+                                        cconnection.connectionStateId ===
+                                        brigade.connectionStateId
+                                    );
+                                }
+                            )[0]
+                        }
+                    />
+                );
+            })}
         </div>
     );
 };
