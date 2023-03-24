@@ -1,6 +1,6 @@
-import { IBrigades, IConnectionState, IDepartment } from "../data/models";
-import { Card } from "antd";
-import { CheckCircleOutlined, StopOutlined } from "@ant-design/icons";
+import { IBrigades, IConnectionState, IDepartment } from '../data/models';
+import { Card } from 'antd';
+import { CheckCircleOutlined, StopOutlined } from '@ant-design/icons';
 
 interface BrigadeProp {
     brigade: IBrigades;
@@ -13,7 +13,7 @@ const BrigadesCard = ({ brigade, department, connection }: BrigadeProp) => {
         <Card
             size="small"
             title={brigade.brigade_name}
-            className="w-60 shadow-xl"
+            className="w-60 max-sm:w-9/12 shadow-xl"
         >
             <h3 className="text-lg leading-10">{department.name}</h3>
             <p>
@@ -21,8 +21,8 @@ const BrigadesCard = ({ brigade, department, connection }: BrigadeProp) => {
                 <span
                     className={`${
                         connection.connectionStateId
-                            ? "text-green-500"
-                            : "text-red-500"
+                            ? 'text-green-500'
+                            : 'text-red-500'
                     }
                     `}
                 >

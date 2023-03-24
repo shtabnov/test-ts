@@ -18,7 +18,7 @@ const Filters = ({
 }: FiltersProp) => {
     return (
         <div className="filters p-5 sticky top-0 z-10 bg-slate-200 ">
-            <div className="container mx-auto flex flex-col sm:flex-row justify-between align-middle ">
+            <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center ">
                 <div className="selectContainer flex flex-col sm:flex-row">
                     <div className="select-box w-52">
                         <span>Соединение:</span>

@@ -47,7 +47,7 @@ function App() {
 
     if (isLoading) {
         return (
-            <div className="container w-100 h-screen mx-auto flex justify-center items-center">
+            <div className="container w-full h-screen mx-auto flex justify-center items-center">
                 <IsLoading />
             </div>
         );
@@ -62,7 +62,7 @@ function App() {
     }
 
     return (
-        <div className="w-screen">
+        <div className="w-full">
             <Filters
                 departments={departments}
                 connectionState={connection}
